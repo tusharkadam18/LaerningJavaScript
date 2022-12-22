@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>employeeapplication</title>
+    <script src="EmployeeApp.js"></script>
+    <style>
+        button {
+            background: transparent;
+            box-sizing: border-box;
+            border-radius: 0.6rem;
+            align-self: center;
+            font-size: 15px;
+            font-weight: 400;
+            margin: 10px;
+            padding: 10px 20px;
+            text-align: center;
+            color: blueviolet;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid aquamarine;
+        }
+
+        button:hover {
+            color: gray;
+            box-shadow: 3px 3px 20px gray;
+
+        }
+
+        table {
+            text-align: center;
+        }
+
+        body {
+            background-color: antiquewhite;
+            color: brown;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        div {
+            display: inline-block;
+            width: 45%;
+            padding: 10px;
+            margin: 10px;
+            vertical-align: top;
+            border: 2px solid blue;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 50px;
+            background-color: burlywood;
+            color: indianred;
+        }
+
+        nav {
+            background-color: lightgrey;
+            margin: 5px;
+            padding: 5px;
+            text-align: center;
+        }
+
+        li, a {
+            display: inline-block;
+            background-color: coral;
+            color: black;
+            padding: 10px;
+            margin-left: 10px;
+            text-decoration: none;
+        }
+    </style>
+    <script>
+        const empRepo = new EmployeeRepo();
+        function display() {
+            const empList = empRepo.getAllEmployees();
+            const tbl = document.getElementById("tbl");
+            tbl.innerHTML = `<tr>
+                            <th>Employee Id</th>
+                            <th>Employee Name</th>
+                            <th>Employee Address</th>
+                            <th>Employee Salary</th>
+                            </tr>`
+            for (const emp of empList) {
+                const row = `<tr>
+                                <td>${emp.id}</td>
+                                <td>${emp.name}</td>
+                                <td>${emp.address}</td>
+                                <td>${emp.salary}</td>
+                            </tr>`
+                tbl.innerHTML += row
+            }
+        }
+        function onAdd() {
+            const id = parseInt(document.getElementById("id").value)
+            const name = document.getElementById("name").value
+            const address = document.getElementById("address").value
+            const salary = parseInt(document.getElementById("salary").value)
+            const emp = new Employee(id, name, address, salary)
+            empRepo.addNewEmployee(emp)
+            alert("Employee Details added successfully.")
+            display()
+        }
+    </script>
+</head>
+
+<body onload="display()">
+    <h1>Employee Application</h1>
+    <hr>
+    <div>
+        <h2>Details Of the Employees</h2>
+        <table id="tbl" border="2" style="border-style: dashed;">
+        </table>
+    </div>
+    <div>
+        <h2>Addition Of New Employees to database of the company</h2>
+        <p>Enter the Employee id:
+            <input type="text" id="id" placeholder="Enter the id">
+        </p>Enter the Employee Name:
+        <input type="text" id="name" placeholder="Enter the name">
+        </p>Enter the Employee Address:
+        <input type="text" id="address" placeholder="Enter the address">
+        </p>Enter the Employee Salary:
+        <input type="text" id="salary" placeholder="Enter the salary">
+        </p>
+
+        <button onclick="onAdd()">Add Employee</button>
+
+    </div>
+</body>
+
+</html>

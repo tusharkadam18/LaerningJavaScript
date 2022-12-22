@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>customerApplication</title>
+    <style>
+        button {
+            background: transparent;
+            box-sizing: border-box;
+            border-radius: 0.6rem;
+            align-self: center;
+            font-size: 15px;
+            font-weight: 400;
+            margin: 10px;
+            padding: 10px 20px;
+            text-align: center;
+            color: blueviolet;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid aquamarine;
+        }
+
+        button:hover {
+            color: gray;
+            box-shadow: 3px 3px 20px gray;
+
+        }
+
+        table {
+            text-align: center;
+            border: 1;
+        }
+
+        body {
+            background-color: antiquewhite;
+            color: brown;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        div {
+            display: inline-block;
+            width: 45%;
+            padding: 10px;
+            margin: 10px;
+            vertical-align: top;
+            border: 2px solid blue;
+        }
+
+        h1, h2 {
+            text-align: center;
+            padding: 50px;
+            background-color: burlywood;
+            color: indianred;
+        }
+
+        nav {
+            background-color: lightgrey;
+            margin: 5px;
+            padding: 5px;
+            text-align: center;
+        }
+
+        li,
+        a {
+            display: inline-block;
+            background-color: coral;
+            color: black;
+            padding: 10px;
+            margin-left: 10px;
+            text-decoration: none;
+        }
+    </style>
+    <script src="CustomerApp.js"></script>
+    <script>
+        const custRepo = new CustomerRepo();
+        function display() {
+            const data = custRepo.getAllCustomers();
+            const tbl = document.getElementById("tbl")
+            tbl.innerHTML = `<tr>
+                <th>Customer Id</th>
+                <th>Customer Name</th>
+                <th>Customer Address</th>
+                <th>Customer Bill</th>
+            </tr>`
+            for (const cust of data) {
+                const row = `<tr>
+                <th>${cust.id}</th>
+                <th>${cust.name}</th>
+                <th>${cust.address}</th>
+                <th>${cust.billAmount}</th>
+            </tr>`
+                tbl.innerHTML += row
+            }
+        }
+
+        function onAdd() {
+            const id = document.getElementById("id").value;
+            const name = document.getElementById("name").value;
+            const address = document.getElementById("address").value;
+            const billAmount = document.getElementById("bill").value;
+            const cust = new Customer(id, name, address, billAmount);
+            custRepo.addNewCustomer(cust);
+            alert("Customer Details Added Sucessfully....")
+            display();
+        }
+
+        function onPurchase() {
+            const id = document.getElementById("id").value;
+            const name = document.getElementById("name").value;
+            const address = document.getElementById("address").value;
+            const billAmount = document.getElementById("bill").value;
+            const price = document.getElementById("val").value;
+            const cust = new Customer(id, name, address, billAmount);
+            const totalbill = custRepo.addProductValueByCustomer(cust, price);
+            const span = document.getElementById("totalbill")
+            span.innerHTML = totalbill;
+        }
+    </script>
+</head>
+
+<body onload="display()">
+    <h1>Customer Application</h1>
+    <hr>
+    <div>
+        <h2>Customer Database</h2>
+        <table id="tbl">
+
+        </table>
+    </div>
+    <div>
+        <h2>New Customer/ Bill Section</h2>
+        <p>Enter the Customer Id: <input type="text" id="id" placeholder="Enter the id"></p>
+        <p>Enter the Customer Name: <input type="text" id="name" placeholder="Enter the Name"></p>
+        <p>Enter the Customer address: <input type="text" id="address" placeholder="Enter the Address"></p>
+        <p>Enter the Bill amount (if new entry write 0): <input type="text" id="bill"
+                placeholder="Enter the Bill Amount"></p>
+        <p>Enter the purchased product value: <input type="text" id="val" placeholder="Enter the price"></p>
+        <button onclick="onPurchase()">Evaluate Bill</button>
+        <p>The Total Bill Of the Given Customer is: <span id="totalbill">_____</span></p>
+        <button onclick="onAdd()">Add Customer</button>
+    </div>
+    <!-- <h1>Bill Desk</h1> -->
+    <!-- <div>
+        <p>Enter the purchased product value: <input type="text" id="val" placeholder="Enter the price"></p>
+        <button onclick="onPurchase()">Evaluate Bill</button>
+        <p><span id="totalbill">_____</span></p>
+    </div> -->
+
+</body>
+
+</html>
