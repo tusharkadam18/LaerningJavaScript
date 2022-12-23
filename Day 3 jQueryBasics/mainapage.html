@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        div{
+            background-color: aqua;
+            display: inline-block;
+            width: 45%;
+            padding: 10px;
+            margin: 10px;
+            vertical-align: top;
+            border: 2px solid blue;
+            font-size: 30px;
+        }
+    </style>
+    <script src="libs/jquery-3.6.3.min.js"></script>
+</head>
+<body>
+    <div>This is div 1</div>
+    <div>This is div 2</div>
+    <div>This is div 3</div>
+    <div>This is div 4</div>
+    <div>This is div 5</div>
+    <div>This is div 6</div>
+    <script>
+        $(document).ready(function(){
+            alert("Testing the code")
+        })
+        $("div").mouseenter(function(){
+            $(this).css("background-color", "gray")
+            $(this).css("font-size", "50px")
+            
+        })
+        $("div").mouseleave(function(){
+            $(this).css("background-color", "red")
+            $(this).css("font-size", "30px")
+        })
+        $(document).click(function(){
+            $("body").css("background-color", "green")
+        })
+    </script>
+</body>
+</html>
