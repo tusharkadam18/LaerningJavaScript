@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="libs/jquery-3.6.3.min.js"></script>
+    <script>
+        const data = [
+            { empId: 123, empName: "Tushar" },
+            { empId: 124, empName: "Shiv" },
+            { empId: 125, empName: "Lalit" }
+        ]
+
+        $().ready(() => {
+            // by the use of .each function
+            $.each(data, (index, value) => {
+                let row = `<tr>
+                            <td>${index + 1}</td>
+                            <td>${value.empId}</td>
+                            <td>${value.empName}</td>
+                           </tr>`
+                $("table:first").append(row)
+            })
+            // by the use of for each loop
+            data.forEach(value => {
+                let i = 4
+                let row = `<tr>
+                            <td>${i}</td>
+                            <td>${value.empId}</td>
+                            <td>${value.empName}</td>
+                           </tr>`
+                $("table:first").append(row)
+                i++;
+            });
+            //  by the use of for of loop
+            for (const value of data) {
+                let i = 7;
+                let row = `<tr>
+                    <td>${i}</td>
+                            <td>${value.empId}</td>
+                            <td>${value.empName}</td>
+                           </tr>`
+                $("table:first").append(row)
+            }
+            // by the use of ordinary for loop
+            for (let i = 0; i < data.length; i++) {
+                const value = data[i];
+                let row = `<tr>
+                    <td>${parseInt(i) + 10}</td>
+                            <td>${value.empId}</td>
+                            <td>${value.empName}</td>
+                           </tr>`
+                $("table:first").append(row)
+            }
+            // by the use of for in loop
+            for (const key in object) {
+                const value = object[key];
+                let row = `<tr>
+                    <td>${parseInt(key)+13}</td>
+                            <td>${value.empId}</td>
+                            <td>${value.empName}</td>
+                           </tr>`
+                $("table:first").append(row)
+            }
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // $().ready(function () {
+        //     $.each(data, function (index, element){
+        //         let row = `<tr>
+        //                 <td>${element.empId}</td>
+        //                 <td>${element.empName}</td>
+        //                 </tr >`
+        //         $("table").append(row);
+        //     })
+        //     data.forEach(element => {
+        //         let row = `<tr>
+        //                 <td>${element.empId}</td>
+        //                 <td>${element.empName}</td>
+        //                 </tr >`
+        //         $("table").append(row)
+        //     });
+        // })
+        // function addToTable() {
+        //     $.each(data, function (index, element){
+        //         let row = `<tr>
+        //                 <td>${element.empId}</td>
+        //                 <td>${element.empName}</td>
+        //                 </tr >`
+        //         $("table").append(row);
+        //         console.log('row :>> ', row);
+        //     })
+        // }
+        // $().ready(addToTable)
+
+    </script>
+</head>
+
+<body>
+    <h1>Tbale formation using jquery-3</h1>
+    <hr>
+    <h2>Table of Employees</h2>
+    <table id="1" border="1">
+        <tr>
+            <td>Sr.No </td>
+            <td>EmployeeId</td>
+            <td>EmployeeName</td>
+        </tr>
+    </table>
+
+</body>
+
+</html>

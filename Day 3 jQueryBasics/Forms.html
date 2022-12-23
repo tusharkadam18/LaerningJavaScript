@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formsusingjquery</title>
+    <script src="libs/jquery-3.6.3.min.js"></script>
+    <style>
+        div {
+            background-color: aqua;
+            display: inline-block;
+            width: 45%;
+            padding: 10px;
+            margin: 10px;
+            vertical-align: top;
+            border: 2px solid blue;
+            font-size: 10px;
+            /* text-align: center; */
+
+        }
+
+        table {
+            width: 100%;
+        }
+
+        th {
+            border-bottom: 2px solid #ccc;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        td {
+            border-bottom: 1px solid #ddd;
+        }
+
+        caption,
+        th,
+        td {
+            padding: 4px 10px 4px 0;
+        }
+
+        caption {
+            background: #f1f1f1;
+            padding: 10px 0;
+            margin-bottom: 1em;
+        }
+
+        tr,
+        td,
+        th {
+            vertical-align: middle;
+        }
+    </style>
+    <script>
+        function addData() {
+            const uname = {}
+            uname.username = $(".1").val();
+            uname.password = $(".2").val();
+            uname.email = $(".3").val();
+            const row = `<tr><td>${uname.username}</td><td>${uname.password}</td><td>${uname.email}</td></tr>`
+            $("div:last > table").append(row)
+            $("div:first > p").append(JSON.stringify(uname))
+        }
+
+        // const showdata = (() => {
+        //     $("button:last").click(() => {
+        //         $("button:eq(1)").toggle(()=>{
+        //             $(this).text = "hidedata"
+        //         })
+        //     })
+        // })
+
+        // function hidedata() {
+        //     $("button:last").click(() => {
+        //         console.log('2nd button is clicked.');
+        //         $("button:last").hide();
+        //         $("button:eq(1)").show(1000)
+        //     })
+        //     $("div").hide()
+        //     // $("button:last").dblclick($("button:first").show(1000))
+
+        // }
+
+        // use of the mouseenter and mouseleave events of jquery
+
+        $().ready(() => {
+            $("td").css("margin", "20px")
+            $("div").mouseenter(function () {
+                $(this).children().css("text-align", "center")
+                $(this).css("text-align", "center")
+                $(this).css("background-color", "gray")
+                $(this).css("font-size", "20px")
+            })
+            $("div").mouseleave(function () {
+                $(this).children().css("text-align", "left")
+                $(this).css("text-align", "left")
+                // $(this).css("background-color", "red")
+                $(this).css("font-size", "10px")
+            })
+        })
+    </script>
+</head>
+
+<body style="font: 1em sans-serif;">
+    <h1>User Registration Form</h1>
+    <form>
+        <p>Enter the userName: <input type="text" class="1" placeholder="Enter the username"></p>
+        <p>Enter the Password: <input type="Password" class="2" placeholder="Enter the Password"></p>
+        <p>Enter the email Id: <input type="email" class="3" placeholder="Enter the email Id"></p>
+        <p><input type="button" onclick="addData()" value="Show Data"></p>
+        <!-- <p><button onclick="addData()" style="cursor: pointer;">AddData</button></p> -->
+        <!-- <p><button onclick="showdata()" style="cursor: pointer;">Show data</button></p> -->
+        <!-- <p><button onclick="hidedata()">hide data</button></p> -->
+    </form>
+    <div>
+
+        <p style="font: 1em sans-serif;">Given Info is: </p>
+    </div>
+    <div>
+        <table border="3" class="123">
+            <tr>
+                <td>userName</td>
+                <td>Password</td>
+                <td>Email</td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
