@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="formdata.js"></script>
+    <title>Useofform</title>
+</head>
+
+<body>
+    <h1>here we are using the form for use of localStorage</h1>
+    <hr>
+    <form>
+        <p>Enter the username: <input type="text" id="name"></p>
+        <p>Enter the Password: <input type="password" id="pass"></p>
+        <p>Enter The EmailId: <input type="email" id="mail"></p>
+        <p><button onclick="saveData()" id="1">Add to database</button></p>
+        <p><button onclick="showData()" id="2">Show Data</button></p>
+    </form>
+    <table id="tbl" border="1" style="margin: 1%;">
+        <tr>
+            <td>Name</td>
+            <td>Email</td>
+        </tr>
+    </table>
+    <script>
+        function saveData() {
+            const username = document.getElementById("name").value;
+            const email = document.getElementById("mail").value;
+            const data = new Data(username, email);
+            console.log('arr :>> ', data);
+            localStorage.setItem("formdata", JSON.stringify(data))
+        }
+        function showData() {
+            const arr = JSON.parse(localStorage.getItem("formdata"))
+            console.log('arr :>> ', arr);
+
+            // for (const item of object) {
+                
+            // }
+        }
+    </script>
+</body>
+
+</html>

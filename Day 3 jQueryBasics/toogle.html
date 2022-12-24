@@ -6,12 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>toogle</title>
     <script src="libs/jquery-3.6.3.min.js"></script>
+    <style>
+        div{
+           text-align: center;
+           padding: 10px;
+           margin: 2pt;
+           border: solid brown;
+           background-color: bisque; 
+        }
+    </style>
     <script>
         $().ready(()=>{
-            $("button").click(()=>{
-                $("p").toggle(1000,()=>{
-                    $("button").text('show');
+            $("button:first").click(()=>{
+                $("div:last").toggle(1000,()=>{
+                    const buutontext = $("button:first").text()=='show'?'hide':"show";
+                    $("button:first").text(buutontext)
                 });
+            })
+                // This by  using button
+            $("button:eq(1)").click(()=>{
+                $("div:last").slideToggle("slow",()=>{
+                    const buutontext = $("button:eq(1)").text()=='show'?'hide':"show";
+                    $("button:eq(1)").text(buutontext)
+                });
+            })
+
+            // Now by using the anchor tag
+            $("div:first > a").click(()=>{
+                $("div:last").slideToggle("slow",()=>{
+                    const atext = $("div:first > a").text() == "hide"?"show":"hide"
+                    $("div:first > a").text(atext);
+                })
             })
         })
     </script>
@@ -20,8 +45,12 @@
     <h1>Toggle Demo</h1>
     <hr>
     <div>
+        This is for toggle: <button>hide</button><br>
+        This is for slideToggle: <button>hide</button><br>
+        This is aslo for slideToggle: <a href="#">hide</a>
+    </div>
+    <div>
         <p>hello Am I Toggling....</p>
-        <button>hide</button>
     </div>
 </body>
 </html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>localstorageexamples</title>
+    <!-- <link rel="stylesheet" href="libs/bootstrap.css"> -->
+    <!-- <script src="libs/jquery-3.6.3.min.js"></script> -->
+
+</head>
+
+<body>
+    <h2>The localStorage Property</h2>
+
+    <p><button onclick="clickCounter()">Click me!</button></p>
+
+    <p>Number of clicks are: </p><span id="3"></span>
+
+    <p>Click the button to see the counter increase.</p>
+    <p>Close the browser tab (or window), and try again, and the counter will continue to count (is not reset).</p>
+    <script>
+        clickCounter()
+        function clickCounter() {
+            if (localStorage.clickcount) {
+                localStorage.clickcount = Number(localStorage.clickcount) + 1;
+            }
+            else {
+                localStorage.clickcount = 1
+            }
+            document.getElementById("3").innerHTML = localStorage.clickcount
+        }
+    </script>
+    <!-- <script>
+        clickCounter();
+
+        function clickCounter() {
+            if (localStorage.clickcount) {
+                localStorage.clickcount = Number(localStorage.clickcount) + 1;
+            } else {
+                localStorage.clickcount = 1;
+            }
+            document.getElementById("3").innerHTML = localStorage.clickcount;
+        }
+    </script> -->
+</body>
+
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bookstoremanagementsystem</title>
+    <script src="datamanupulation.js"></script>
+    <script src="libs/jquery-3.6.3.min.js"></script>
+    <link rel="stylesheet" href="libs/bootstrap.css">
+    <script>
+        const bookRepo = new BookRepository();
+        function saveData() {
+            localStorage.setItem("books", JSON.stringify(bookRepo.books));
+        }
+
+        function loadData() {
+            if (localStorage.getItem("books") == undefined) {
+                localStorage.setItem("books", JSON.stringify([]));
+            } else
+                bookRepo.books = JSON.parse(localStorage.getItem("books"));
+        }
+
+        function hideDivs() {
+            $("div.col-md-8").slideUp()
+            $("div.col-md-4 > div").slideUp()
+        }
+
+        function onAddLink() {
+            hideDivs()
+            $("div.col-md-4 > div:eq(1)").show();
+        }
+
+        function displayRecords() {
+            //call the load data to get existing records.
+            loadData();
+            //call the getAllBooks function.
+            const books = bookRepo.getAllBooks();
+            $("table").find("tr:gt(0)").remove(); //clear the existing table with only heading.
+            //iterate thru the collection and fill the table. 
+            $.each(books, (index, book) => {
+                const row = createRow(book);
+                $("table").append(row)
+            })
+        }
+
+        function createRow(book) {
+            const row = `<tr><td>${book.id}</td><td>${book.name}</td><td>${book.author}</td><td>Rs. ${book.price}</td><td><a href="#" class="btn btn-secondary edit" info="${book.id}">Edit</td></tr>`
+            return row;
+        }
+        function onShowLink() {
+            hideDivs();
+            displayRecords();
+            $("div.col-md-8").slideDown();
+            $(".edit").click(function () {
+                const id = $(this).attr("info");
+                const selectedBook = bookRepo.getBookById(id);
+                $("#txtId").val(selectedBook.id)
+                $("#txtTitle").val(selectedBook.name)
+                $("#txtAuthor").val(selectedBook.author)
+                $("#txtPrice").val(selectedBook.price)
+                hideDivs();
+                $("div.col-md-4 > div:first").slideDown();
+            })
+        }
+        function onAddNew() {
+            const id = $("#txtNewId").val();
+            const title = $("#txtNewTitle").val();
+            const author = $("#txtNewAuthor").val();
+            const price = $("#txtNewPrice").val();
+            const book = new Book(id, title, author, price);
+            bookRepo.addNewBook(book);
+            alert("Book added to the storage");
+            saveData();
+        }
+        function onDeleteLink() {
+            const id = parseInt(prompt("Enter the Id of the Book to remove"));
+            loadData();//To get fresh data from the local storage.
+            bookRepo.deleteBookById(id);
+            saveData();//save the changes made to the local storage.
+            alert("Book Deleted from the Repo");
+        }
+
+        function onUpdate() {
+            const id = $("#txtId").val();
+            const title = $("#txtTitle").val();
+            const author = $("#txtAuthor").val();
+            const price = $("#txtPrice").val();
+            const book = new Book(id, title, author, price);
+            bookRepo.updateBook(book);
+            alert("Book added to the storage");
+            saveData();
+        }
+        function init(){
+            //provide event binding and data binding.
+            // hideDivs();
+            $("li:eq(0)").find("a").click(onAddLink)
+            $("li:eq(1)").find("a").click(onDeleteLink)
+            $("li:eq(2)").find("a").click(onShowLink)
+            $("div.col-md-4 >div:eq(1)").find("button").click(onAddNew);
+            $("div.col-md-4 >div:first").find("button").click(onUpdate);
+        }
+        $().ready(init);
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Add New Book</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Delete Book</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Show Books</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link active" href="#">Show Books</a>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <h1>Book Store Manager Software</h1>
+    <!-- <nav>
+        <ul>
+            <li><a href="#">Show Books</a></li>
+            <li><a href="#">Add Book</a></li>
+            <li><a href="#">Delete Book</a></li>
+            <li><a href="#">About Us</a></li>
+        </ul>
+    </nav> -->
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <table class="table table-bordered table-stripped bg-info">
+                    <tr>
+                        <th>Book ID</th>
+                        <th>Book Title</th>
+                        <th>Book Author</th>
+                        <th>Book Price</th>
+                        <th>Options</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-4">
+                <div>
+                    <h1>Edit Book</h1>
+                    <hr>
+                    <p>Book ID:<input disabled class="form-control" id="txtId" type="text"></p>
+                    <p>Book Title: <input  class="form-control" id="txtTitle" type="text"></p>
+                    <p>Author: <input  class="form-control" id="txtAuthor" type="text"></p>
+                    <p>Price: <input  class="form-control" type="text" id="txtPrice"></p>
+                    <p><button class="btn btn-info">Update Book</button></p>
+                </div>
+                <div>
+                    <h1>Add New Book</h1>
+                    <hr>
+                    <p>Book ID:<input class="form-control" id="txtNewId" type="text"></p>
+                    <p>Book Title: <input  class="form-control" id="txtNewTitle" type="text"></p>
+                    <p>Author: <input  class="form-control" id="txtNewAuthor" type="text"></p>
+                    <p>Price: <input  class="form-control" type="text" id="txtNewPrice"></p>
+                    <p><button class="btn btn-info">Add Book</button></p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <hr>
+        <p class="text-danger" style="text-align: center; font-style: italic; font-size:0.6em;">&copy;CopyRights CDAC- Hyderabad Training-2022</p>
+    </footer>  
+</body>
+
+</html>
