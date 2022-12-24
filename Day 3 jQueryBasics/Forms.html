@@ -64,14 +64,6 @@
             $("div:first > p").append(JSON.stringify(uname))
         }
 
-        // const showdata = (() => {
-        //     $("button:last").click(() => {
-        //         $("button:eq(1)").toggle(()=>{
-        //             $(this).text = "hidedata"
-        //         })
-        //     })
-        // })
-
         // function hidedata() {
         //     $("button:last").click(() => {
         //         console.log('2nd button is clicked.');
@@ -86,6 +78,7 @@
         // use of the mouseenter and mouseleave events of jquery
 
         $().ready(() => {
+            // addData();
             $("td").css("margin", "20px")
             $("div").mouseenter(function () {
                 $(this).children().css("text-align", "center")
@@ -99,6 +92,11 @@
                 // $(this).css("background-color", "red")
                 $(this).css("font-size", "10px")
             })
+            $("button:last").click(()=>{
+                $("div").toggle(1000,()=>{
+                    $("button:last").text('Show data');
+                });
+            })
         })
     </script>
 </head>
@@ -109,9 +107,9 @@
         <p>Enter the userName: <input type="text" class="1" placeholder="Enter the username"></p>
         <p>Enter the Password: <input type="Password" class="2" placeholder="Enter the Password"></p>
         <p>Enter the email Id: <input type="email" class="3" placeholder="Enter the email Id"></p>
-        <p><input type="button" onclick="addData()" value="Show Data"></p>
-        <!-- <p><button onclick="addData()" style="cursor: pointer;">AddData</button></p> -->
-        <!-- <p><button onclick="showdata()" style="cursor: pointer;">Show data</button></p> -->
+        <!-- <p><input type="button" onclick="addData()" value="Show Data"></p> -->
+        <p><button onclick="addData()" style="cursor: pointer;">AddData</button></p>
+        <p><button onclick="showdata()" style="cursor: pointer;">Hide data</button></p>
         <!-- <p><button onclick="hidedata()">hide data</button></p> -->
     </form>
     <div>
