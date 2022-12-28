@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="formdata.js"></script>
+    <script src="libs/jquery-3.6.3.min.js"></script>
     <title>Useofform</title>
 </head>
 
@@ -34,12 +35,51 @@
             localStorage.setItem("formdata", JSON.stringify(data))
         }
         function showData() {
-            const arr = JSON.parse(localStorage.getItem("formdata"))
-            console.log('arr :>> ', arr);
+            const data = JSON.parse(localStorage.getItem("formdata"))
+            console.log('data :>> ', data);
+            
+            $.each(data, function (key, value) {
+                console.log(key + ': ' + value);
+                const row =`<tr>
+                                <td>${value}</td>
+                                <td>${value}</td>
+                            </tr>`
+                $("table").append(row)
+            });
+            // console.log('arr :>> ', arr);
 
-            // for (const item of object) {
-                
+            // for (let i = 0; i < arr.length; i++) {
+            //     const element = arr[i];
+
+            //     var row = table.insertRow(-1);
+
+            //     // Insert cells for each item in the row
+            //     var cell1 = row.insertCell(0);
+            //     var cell2 = row.insertCell(1);
+
+            //     // Set the text of the cells to the values in the item object
+            //     cell1.innerHTML = item.name;
+            //     cell2.innerHTML = item.email;
             // }
+            // Get the data from local storage
+            // let data = localStorage.getItem("formdata");
+
+            // Parse the data into a JavaScript object
+            // const dataObject = JSON.parse(data);
+
+            // Get a reference to the table element
+            // const table = document.getElementById('tbl');
+
+            // Iterate through the data object and add each item to the table
+            // for (let i = 0; i < data.length; i++) {
+            //     let row = `<tr>
+            //                     <td>${data[i].mail}</td>
+            //                     <td>${data[i].name}</td>
+            //                 </tr>`
+            //     table.innerHTML+= table.innerHTML + row
+            //     document.write(row)
+            // }
+
         }
     </script>
 </body>

@@ -1,0 +1,44 @@
+
+1.Test if jQuery is loaded
+2.Scroll to the top of the page with jQuery.
+3. Disable right click menu in html page using jquery
+4. Disable/enable the form submit button. Disable the submit button until the visitor has clicked a check box.
+5.Fix broken images automatically. Hide the following broken img tag in the body section.(Any Sample Image)
+6.Blink text using jQuery. 
+7.Create a Zebra Stripes table effect.
+8. Print a page using jQuery. 
+9. Limit character input in the textarea including count.
+10. Make first word bold of all elements. 
+11. Create a div using jQuery with style tag. 
+12. Move one DIV element inside another using jQuery. 
+Move the following 
+<div id="source">
+...
+</div>
+To 
+<div id="destination">
+...
+</div>
+13. Select values from a JSON object using jQuery.
+14. Add a list elements within an unordered list element.
+15. Remove all the options of a select box and then add one option and select it.
+16. Underline all the words of a text using jQuery.
+17. How to get the value of a textbox using jQuery?
+18. Remove all CSS classes using jQuery. 
+19. Remove style added with .css() function using jQuery. 
+20. Distinguish between left and right mouse click with jQuery.
+21. Check if an object is a jQuery object. 
+22. How to detect whether the user has pressed 'Enter Key' using jQuery. 
+23. Count number of rows and columns in a table using jQuery. 
+24. How to get textarea text using jQuery. 
+25. Access form input fields using jQuery. 
+26. Find the absolute position of an element using jQuery. 
+27. Convert a jQuery object into a string. 
+28. How to detect a textbox's content has changed using jQuery? 
+29. Remove a specific value from an array using jQuery. 
+30. Change button text using jQuery. 
+31. Add options to a drop-down list using jQuery.
+32. Set background-image using jQuery CSS property. 
+33. Delete all table rows except first one using jQuery. 
+34. How to get the selected value and currently selected text of a dropdown box using jQuery?
+35. Disable a link using jQuery. 

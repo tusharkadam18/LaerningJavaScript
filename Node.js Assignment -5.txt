@@ -1,0 +1,13 @@
+1.Create a page showing live score/feed using Ajax and JSON from a live sport/news service endpoint given by the faculty
+2.Write a recursive function in Node.js
+3. Write a Node program that prints all the numbers between 1 and 100, each on a separate line. 
+A few caveats:
+o if the number is divisible by 3, print "foo"
+o if the number is divisible by 5, print "bar"
+o if the number is divisible by both 3 and 5, print "foobar"
+4..Write a program to create a new file and write some content to it in synchronous mode and 
+read and display file contents on standard output in async mode
+5. Build a simple Node.js web application serving both HTTP GET and POST methods
+ 6.Use Node and Express to write a simple web application that consists of at least 5 route 
+implementations
+7. Rebuild any previous Node assignment using Express and a template engine
